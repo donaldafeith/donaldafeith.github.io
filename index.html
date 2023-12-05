@@ -1,0 +1,110 @@
+<html>
+<head>
+<script>
+/*
+original: Copyright (c) 2023 by Matteo Bruni (https://codepen.io/matteobruni/pen/wvprNwP)
+*/
+
+loadConfettiPreset(tsParticles);
+
+let confettiContainer;
+
+const partyBtn = document.getElementById("party");
+
+tsParticles
+  .load("tsparticles", {
+    particles: {
+      shape: {
+        type: "character",
+        character: {
+          value: "💵"
+        }
+      }
+    },
+    preset: "confetti",
+    emitters: []
+  })
+  .then((container) => (confettiContainer = container));
+
+partyBtn.addEventListener("click", () => {
+  confettiContainer.addEmitter({
+     size: {
+      width: 0,
+      height: 0
+    },
+    
+    startCount: 150,
+    position: {
+    "x": 50,
+    "y": 50},
+    rate: {
+      delay: 0,
+      quantity: 50
+    },
+    life: {
+      duration: 1,
+      count: 2
+    }
+  });
+});
+</script>
+<style>
+body {
+  background: #000;
+}
+
+#layout {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  align-items: center;
+  display: flex;
+}
+
+#layout > div {
+  flex: 2;
+}
+
+#sublayout {
+  display: flex;
+  flex: 1 !important;
+  flex-direction: row;
+  align-items: center;
+}
+
+#button-container {
+  flex: 1;
+  text-align: center;
+}
+
+#party {
+  width: 200px;
+  height: 100px;
+  font-size: 30px;
+  border-radius: 50px;
+  border: none;
+  background: #333;
+  color: #fff;
+  box-shadow: 4px 4px 5px #fff, -4px -4px 5px #fff, inset 4px 4px 5px #ababab;
+}
+
+#party:active {
+  background: #006969;
+  box-shadow: 4px 4px 5px #fff, -4px -4px 5px #fff, inset 4px 4px 5px #000;
+}
+</style>
+</head>
+<body>
+<div id="layout">
+  <div></div>
+  <div id="sublayout">
+    <div id="button-container">
+      <button type="button" id="party">Celebrate</button>
+    </div>
+  </div>
+  <div></div>
+</div>
+</body>
+</html>
